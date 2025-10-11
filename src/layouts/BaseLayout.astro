@@ -1,0 +1,58 @@
+---
+import '../styles/global.css';
+---
+
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>&#123;X&#125;plitter - Programación en español</title>
+    <link rel="icon" type="image/png" href="./favicon.png" />
+    <meta name="title" content="{X}plitter - Programación en español" />
+    <meta
+      name="description"
+      content="{X}plitter - Convierte texto largo en un hilo de X/Twitter, Threads o Bluesky listo para publicar."
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://programacion-es.dev/xplitter" />
+    <meta property="og:title" content="{X}plitter - Programación en español" />
+    <meta
+      property="og:description"
+      content="{X}plitter - Convierte texto largo en un hilo de X/Twitter, Threads o Bluesky listo para publicar."
+    />
+    <meta property="og:image" content="./xplitter.jpg" />
+
+    <!-- X (Twitter) -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://programacion-es.dev/xplitter/" />
+    <meta property="twitter:title" content="{X}plitter - Programación en español" />
+    <meta
+      property="twitter:description"
+      content="{X}plitter - Convierte texto largo en un hilo de X/Twitter, Threads o Bluesky listo para publicar."
+    />
+    <meta property="twitter:image" content="./xplitter.jpg" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1><span>&#123;X&#125;</span>plitter</h1>
+        <p>Convierte texto largo en un hilo de X/Twitter, Threads o Bluesky listo para publicar.</p>
+      </header>
+      <slot />
+    </div>
+    <footer>
+      <p>
+        Desarrollado con <img src="./icons/love.svg" alt="amor" class="footer-icon" />, <img
+          src="./icons/astro.svg"
+          alt="astrobuild"
+          class="footer-icon"
+        /> y <img src="./icons/svelte.svg" alt="svelte" class="footer-icon" />
+        <a href="https://twitter.com/program_es" target="_blank" rel="noopener noreferrer"
+          >Programación en español</a
+        >
+      </p>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+.astro
+dist
+node_modules
+.DS_Store
+.env
+.vscode
+*.log
+*.local
+*.tsbuildinfo
