@@ -2,18 +2,32 @@ export function splitIntoTweets(text: string): string[] {
   const TWEET_MAX_LENGTH = 280;
   const tweets: string[] = [];
 
-  const paragraphs = text
-    .split(/\n+/)
-    .map(paragraph => paragraph.trim())
-    .filter(Boolean);
+  const paragraphs = text.split(/\n/).map(p => p.trim()).filter(p => p.length > 0);
+
+  let currentTweet = '';
 
   for (const paragraph of paragraphs) {
-    if (paragraph.length <= TWEET_MAX_LENGTH) {
-      tweets.push(paragraph);
-      continue;
-    }
+    if (currentTweet.length + paragraph.length + 1 <= TWEET_MAX_LENGTH) {
+      currentTweet = currentTweet
+        ? currentTweet + '\n' + paragraph
+        : paragraph;
+    } else {
+      if (currentTweet) {
+        tweets.push(currentTweet);
+        currentTweet = '';
+      }
 
-    tweets.push(...splitLongParagraph(paragraph, TWEET_MAX_LENGTH));
+      if (paragraph.length > TWEET_MAX_LENGTH) {
+        const chunks = splitLongParagraph(paragraph, TWEET_MAX_LENGTH);
+        tweets.push(...chunks);
+      } else {
+        currentTweet = paragraph;
+      }
+    }
+  }
+
+  if (currentTweet) {
+    tweets.push(currentTweet);
   }
 
   return tweets;
