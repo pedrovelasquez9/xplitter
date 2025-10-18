@@ -40,12 +40,33 @@
       showNotification = false;
     }, 1000);
   }
+
+  function handleEmojiSelect(emoji: CustomEvent<string>) {
+    const textarea = document.querySelector('textarea');
+    if (!textarea) return;
+
+    const cursorPos = textarea.selectionStart ?? inputText.length;
+    const newCursorPos = cursorPos + emoji.detail.length;
+
+    inputText = inputText.slice(0, cursorPos) + emoji.detail + inputText.slice(cursorPos);
+    tweets = splitIntoTweets(inputText);
+
+    // Esperamos al siguiente ciclo para asegurar que el DOM se ha actualizado
+    setTimeout(() => {
+      textarea.focus();
+      textarea.setSelectionRange(newCursorPos, newCursorPos);
+    }, 0);
+  }
 </script>
 
 <div class="app">
   <div>
     <TextInput on:textChange={handleTextChange} bind:inputText />
-    <ThreadControls on:copy={copyThread} on:reset={resetThread} />
+    <ThreadControls
+      on:copy={copyThread}
+      on:reset={resetThread}
+      on:emojiSelect={handleEmojiSelect}
+    />
   </div>
   <ThreadPreview {tweets} on:copyTweet={(tweet) => handleCopyTweet(tweet)} />
   <div class="notification">
