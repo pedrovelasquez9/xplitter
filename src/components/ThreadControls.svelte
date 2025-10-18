@@ -2,6 +2,7 @@
   import { createEventDispatcher } from 'svelte';
   import clipboardIcon from '/icons/clipboard.svg?url';
   import resetIcon from '/icons/refresh.svg?url';
+  import EmojiPicker from './EmojiPicker.svelte';
 
   const dispatch = createEventDispatcher();
   function copyAll() {
@@ -22,4 +23,5 @@
     <img src={resetIcon} class="btn-icon" alt="Resetear" />
     Resetear
   </button>
+  <EmojiPicker on:emojiSelect={(event) => dispatch('emojiSelect', event.detail)} />
 </div>
